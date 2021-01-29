@@ -1,24 +1,41 @@
 {
-  "name": "with-typescript-styled-components",
-  "version": "1.0.0",
-  "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "next": "latest",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
-    "styled-components": "^5.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "12.0.12",
-    "@types/react": "16.8.23",
-    "@types/react-dom": "16.8.4",
-    "@types/styled-components": "5.0.1",
-    "babel-plugin-styled-components": "^1.10.0",
-    "typescript": "4.0"
-  },
-  "license": "MIT"
+	"name": "with-typescript-styled-components",
+	"version": "1.0.0",
+	"scripts": {
+		"dev": "next",
+		"build": "next build",
+		"start": "next start"
+	},
+	"dependencies": {
+		"next": "latest",
+		"prop-types": "^15.7.2",
+		"react": "^16.13.0",
+		"react-dom": "^16.13.0",
+		"styled-components": "^5.0.0"
+	},
+	"devDependencies": {
+		"@types/node": "12.0.12",
+		"@types/prop-types": "^15.7.3",
+		"@types/react": "16.8.23",
+		"@types/react-dom": "16.8.4",
+		"@types/styled-components": "5.0.1",
+		"babel-plugin-styled-components": "^1.10.0",
+		"husky": "^4.3.8",
+		"lint-staged": "^10.5.3",
+		"prettier": "^2.2.1",
+		"typescript": "4.0"
+	},
+	"lint-staged": {
+		"./**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+			"prettier --write",
+			"yarn lint",
+			"git add"
+		]
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "tsc && lint-staged"
+		}
+	},
+	"license": "MIT"
 }
