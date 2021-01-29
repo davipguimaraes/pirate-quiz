@@ -28,7 +28,8 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export default function App({ Component , pageProps }) {
+export default function App(props:any) {
+	const { Component , pageProps } = props;
 	return (
 		<>
 			<ThemeProvider theme={theme}>

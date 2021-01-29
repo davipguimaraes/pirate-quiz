@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import db from '../db.json';
-import Widget from '../src/components/Widget';
+import {Widget, WidgetHeader, WidgetContent} from '../src/components/Widget';
 import QuizLogo from '../src/components/QuizLogo';
 import QuizBackground from '../src/components/QuizBackground';
 import Footer from '../src/components/Footer';
@@ -23,24 +23,24 @@ export default function Home() {
 			<QuizContainer>
 				<QuizLogo />
 				<Widget>
-					<Widget.Header>
+					<WidgetHeader>
 						<h1>{db.title}</h1>
-					</Widget.Header>
-					<Widget.Content>
+					</WidgetHeader>
+					<WidgetContent>
 						<p>{db.description}</p>
-					</Widget.Content>
+					</WidgetContent>
 				</Widget>
 
 				<Widget>
-					<Widget.Content>
+					<WidgetContent>
 						<h1>Quizes da Galera</h1>
 
 						<p>lorem ipsum dolor sit amet...</p>
-					</Widget.Content>
+					</WidgetContent>
 				</Widget>
 				<Footer />
 			</QuizContainer>
-			<GitHubCorner projectUrl="https://github.com/davipguimaraes" />
+			<GitHubCorner projectUrl="https://github.com/davipguimaraes/pirate-quiz" />
 		</QuizBackground>
 	);
 }
