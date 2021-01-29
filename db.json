@@ -1,0 +1,43 @@
+{
+	"bg": "https://i.pinimg.com/originals/0c/97/0c/0c970c8b7986fdb4243c98126c6f9bd0.jpg",
+	"title": "Quiz Piratas",
+	"description": "Teste os seus conhecimentos sobre piratas e vamos ver se tu não fica sem nada",
+	"questions": [
+	  {
+		"image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
+		"title": "Como fazer um seletor por id via CSS?",
+		"description": "Essa é pra aquecer",
+		"answer": 2,
+		"alternatives": [
+		  ".elemento",
+		  "*elemento",
+		  "#elemento",
+		  "%elemento"
+		]
+	  },
+	  {
+		"image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
+		"title": "Como fazer um background gradiente com css?",
+		"description": "Faz tempo em haha",
+		"answer": 0,
+		"alternatives": [
+		   "background: linear-gradient(#e66465, #9198e5);",
+		   "background: gradient(#e66465, #9198e5);"
+		]
+	  }
+	],
+	"external": [
+	  ""
+	],
+	"theme": {
+	  "colors": {
+		"primary": "#5B210A",
+		"secondary": "#ff6501",
+		"mainBg": "#d8bfaa",
+		"contrastText": "#FFFFFF",
+		"wrong": "#d50000",
+		"success": "#64dd17"
+	  },
+	  "borderRadius": "4px"
+	}
+  }
