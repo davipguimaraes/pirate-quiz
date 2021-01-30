@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import db from '../db.json';
-import {Widget, WidgetHeader, WidgetContent} from '../src/components/Widget';
+import { Widget, WidgetHeader, WidgetContent } from '../src/components/Widget';
 import QuizLogo from '../src/components/QuizLogo';
 import QuizBackground from '../src/components/QuizBackground';
 import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
+import HeadPage from '../src/components/Head';
 
 export const QuizContainer = styled.div`
 	width: 100%;
@@ -19,28 +20,31 @@ export const QuizContainer = styled.div`
 
 export default function Home() {
 	return (
-		<QuizBackground backgroundImage={db.bg}>
-			<QuizContainer>
-				<QuizLogo />
-				<Widget>
-					<WidgetHeader>
-						<h1>{db.title}</h1>
-					</WidgetHeader>
-					<WidgetContent>
-						<p>{db.description}</p>
-					</WidgetContent>
-				</Widget>
+		<>
+			<HeadPage titulo={db.title} sharedImage={db.bg} />
+			<QuizBackground backgroundImage={db.bg}>
+				<QuizContainer>
+					<QuizLogo />
+					<Widget>
+						<WidgetHeader>
+							<h1>{db.title}</h1>
+						</WidgetHeader>
+						<WidgetContent>
+							<p>{db.description}</p>
+						</WidgetContent>
+					</Widget>
 
-				<Widget>
-					<WidgetContent>
-						<h1>Quizes da Galera</h1>
+					<Widget>
+						<WidgetContent>
+							<h1>Quizes da Galera</h1>
 
-						<p>lorem ipsum dolor sit amet...</p>
-					</WidgetContent>
-				</Widget>
-				<Footer />
-			</QuizContainer>
-			<GitHubCorner projectUrl="https://github.com/davipguimaraes/pirate-quiz" />
-		</QuizBackground>
+							<p>lorem ipsum dolor sit amet...</p>
+						</WidgetContent>
+					</Widget>
+					<Footer />
+				</QuizContainer>
+				<GitHubCorner projectUrl="https://github.com/davipguimaraes/pirate-quiz" />
+			</QuizBackground>
+		</>
 	);
 }
