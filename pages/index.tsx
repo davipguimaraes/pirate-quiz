@@ -9,7 +9,7 @@ import QuizBackground from '../src/components/QuizBackground';
 import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
 import HeadPage from '../src/components/Head';
-import Input from '../src/components/input';
+import Input from '../src/components/Input';
 import Button from '../src/components/Button';
 
 export const QuizContainer = styled.div`
