@@ -27,11 +27,13 @@ interface QuestionItem {
 }
 export function QuestionWidget(questaoItem: QuestionItem) {
 	const questionId = `question__${questaoItem.questionIndex}`;
+
 	const [selectedAlternative, setSelectedAlternative] = React.useState(-1);
 	const [isQuestionSelected, setIsQuestionSelected] = React.useState(false);
 	const isCorrect = selectedAlternative == questaoItem.question.answer;
+
 	const timeToSubmit = 3000;
-	let timerToSubmit: ReturnType<typeof setTimeout>;
+	let [timerToSubmit, setTimerSubmit] = React.useState(0);
 
 	return (
 		<Widget>
@@ -81,22 +83,14 @@ export function QuestionWidget(questaoItem: QuestionItem) {
 											setSelectedAlternative(
 												alternativeIndex,
 											);
-											console.log(
-												'timer',
-												timerToSubmit,
-												!!timerToSubmit,
-											);
+
 											if (!!timerToSubmit) {
-												console.log('clena');
 												clearTimeout(timerToSubmit);
 											}
-											timerToSubmit = setTimeout(() => {
-												setIsQuestionSelected(true);
-											}, timeToSubmit);
-											console.log(
-												'timer',
-												timerToSubmit,
-												!!timerToSubmit,
+											setTimerSubmit(
+												setTimeout(() => {
+													setIsQuestionSelected(true);
+												}, timeToSubmit),
 											);
 										}}
 										disabled={isQuestionSelected}
