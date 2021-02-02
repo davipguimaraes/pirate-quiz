@@ -51,7 +51,10 @@ export const WidgetContent = styled.div`
 	}
 `;
 
-export const WidgetTopic = styled.a`
+type WidgetTopicProps = {
+	disabled?: boolean;
+};
+export const WidgetTopic = styled.a<WidgetTopicProps>`
 	outline: 0;
 	text-decoration: none;
 	color: ${({ theme }) => theme.colors.contrastText};
@@ -62,6 +65,7 @@ export const WidgetTopic = styled.a`
 	border-radius: ${({ theme }) => theme.borderRadius};
 	transition: 0.3s;
 	display: block;
+	color: ${(props) => (props.disabled ? 0.7 : 1)};
 
 	&:hover,
 	&:focus {

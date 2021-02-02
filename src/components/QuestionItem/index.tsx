@@ -8,7 +8,7 @@ const Status = styled.span`
 	padding: 10px 15px;
 	margin-bottom: 8px;
 	display: block;
-	background-color: ${({ theme }) => `${theme.colors.primary}dd`};
+	background-color: ${({ theme }) => `${theme.colors.primary}88`};
 	border-radius: ${({ theme }) => theme.borderRadius};
 	border-left: ${({ theme }) => theme.borderRadius} solid transparent;
 
@@ -29,7 +29,7 @@ export function QuestionWidget(questaoItem: QuestionItem) {
 	const questionId = `question__${questaoItem.questionIndex}`;
 
 	const [selectedAlternative, setSelectedAlternative] = React.useState(-1);
-	const [isQuestionSelected, setIsQuestionSelected] = React.useState(false);
+	const [isAnswerSelected, setIsAnswerSelected] = React.useState(false);
 	const isCorrect = selectedAlternative == questaoItem.question.answer;
 
 	const timeToSubmit = 3000;
@@ -72,9 +72,9 @@ export function QuestionWidget(questaoItem: QuestionItem) {
 									as="label"
 									htmlFor={alternativeId}
 									key={alternativeIndex}
+									disabled={isAnswerSelected}
 								>
 									<input
-										// style={{ display: 'none' }}
 										id={alternativeId}
 										name={questionId}
 										type="radio"
@@ -89,11 +89,11 @@ export function QuestionWidget(questaoItem: QuestionItem) {
 											}
 											setTimerSubmit(
 												setTimeout(() => {
-													setIsQuestionSelected(true);
+													setIsAnswerSelected(true);
 												}, timeToSubmit),
 											);
 										}}
-										disabled={isQuestionSelected}
+										disabled={isAnswerSelected}
 									/>
 									<span> {alternative}</span>
 								</WidgetTopic>
@@ -101,13 +101,13 @@ export function QuestionWidget(questaoItem: QuestionItem) {
 						},
 					)}
 
-					{isQuestionSelected && isCorrect && (
+					{isAnswerSelected && isCorrect && (
 						<Status className="correct">Vocẽ acertou</Status>
 					)}
-					{isQuestionSelected && !isCorrect && (
+					{isAnswerSelected && !isCorrect && (
 						<Status className="incorrect">Errou</Status>
 					)}
-					<Button type="submit" disabled={!isQuestionSelected}>
+					<Button type="submit" disabled={!isAnswerSelected}>
 						Confirmar
 					</Button>
 				</form>
