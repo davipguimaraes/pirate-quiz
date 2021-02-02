@@ -6,9 +6,9 @@ import QuestionInterface from '../../../model/questions.interface';
 
 const Status = styled.span`
 	padding: 10px 15px;
-	margin-bottom: 8px;
+	margin-top: 8px;
 	display: block;
-	background-color: ${({ theme }) => `${theme.colors.primary}88`};
+	background-color: ${({ theme }) => `${theme.colors.primary}30`};
 	border-radius: ${({ theme }) => theme.borderRadius};
 	border-left: ${({ theme }) => theme.borderRadius} solid transparent;
 
@@ -29,11 +29,10 @@ export function QuestionWidget(questaoItem: QuestionItem) {
 	const questionId = `question__${questaoItem.questionIndex}`;
 
 	const [selectedAlternative, setSelectedAlternative] = React.useState(-1);
-	const [isAnswerSelected, setIsAnswerSelected] = React.useState(false);
+	const [isAnswerChoice, setIsAnswerChoice] = React.useState(false);
 	const isCorrect = selectedAlternative == questaoItem.question.answer;
 
 	const timeToSubmit = 3000;
-	let [timerToSubmit, setTimerSubmit] = React.useState(0);
 
 	return (
 		<Widget>
@@ -59,41 +58,41 @@ export function QuestionWidget(questaoItem: QuestionItem) {
 				<form
 					onSubmit={(infosDoEvento) => {
 						infosDoEvento.preventDefault();
-						questaoItem.onSubmit();
+						setIsAnswerChoice(true);
+
+						setTimeout(() => {
+							questaoItem.onSubmit();
+
+							setTimeout(() => {
+								setIsAnswerChoice(false);
+								setSelectedAlternative(-1);
+							}, 1);
+						}, timeToSubmit);
 					}}
 				>
 					{questaoItem.question.alternatives.map(
 						(alternative: string, alternativeIndex: number) => {
 							const alternativeId = `alternative__${alternativeIndex}`;
-							const isSelected =
-								selectedAlternative == alternativeIndex;
 							return (
 								<WidgetTopic
 									as="label"
 									htmlFor={alternativeId}
 									key={alternativeIndex}
-									disabled={isAnswerSelected}
+									disabled={isAnswerChoice}
 								>
 									<input
 										id={alternativeId}
 										name={questionId}
 										type="radio"
-										checked={isSelected}
 										onChange={() => {
 											setSelectedAlternative(
 												alternativeIndex,
 											);
-
-											if (!!timerToSubmit) {
-												clearTimeout(timerToSubmit);
-											}
-											setTimerSubmit(
-												setTimeout(() => {
-													setIsAnswerSelected(true);
-												}, timeToSubmit),
-											);
 										}}
-										disabled={isAnswerSelected}
+										checked={
+											alternativeIndex ==
+											selectedAlternative
+										}
 									/>
 									<span> {alternative}</span>
 								</WidgetTopic>
@@ -101,15 +100,16 @@ export function QuestionWidget(questaoItem: QuestionItem) {
 						},
 					)}
 
-					{isAnswerSelected && isCorrect && (
-						<Status className="correct">Vocẽ acertou</Status>
-					)}
-					{isAnswerSelected && !isCorrect && (
-						<Status className="incorrect">Errou</Status>
-					)}
-					<Button type="submit" disabled={!isAnswerSelected}>
+					<Button type="submit" disabled={selectedAlternative < 0}>
 						Confirmar
 					</Button>
+
+					{isAnswerChoice && isCorrect && (
+						<Status className="correct">Certou mizeraviiii</Status>
+					)}
+					{isAnswerChoice && !isCorrect && (
+						<Status className="incorrect">Errooooooouuuuu</Status>
+					)}
 				</form>
 			</WidgetContent>
 		</Widget>

@@ -58,14 +58,14 @@ export const WidgetTopic = styled.a<WidgetTopicProps>`
 	outline: 0;
 	text-decoration: none;
 	color: ${({ theme }) => theme.colors.contrastText};
-	background-color: ${({ theme }) => `${theme.colors.primary}40`};
+	background-color: ${({ theme, disabled }) =>
+		`${theme.colors.primary}${disabled ? '80' : '40'}`};
 	padding: 10px 15px;
 	margin-bottom: 8px;
 	cursor: pointer;
 	border-radius: ${({ theme }) => theme.borderRadius};
 	transition: 0.3s;
 	display: block;
-	color: ${(props) => (props.disabled ? 0.7 : 1)};
 
 	&:hover,
 	&:focus {
