@@ -53,22 +53,42 @@ export const WidgetContent = styled.div`
 
 type WidgetTopicProps = {
 	disabled?: boolean;
+	isCorrect?: boolean;
+	isAwnserChoice?: boolean;
 };
 export const WidgetTopic = styled.a<WidgetTopicProps>`
 	outline: 0;
 	text-decoration: none;
 	color: ${({ theme }) => theme.colors.contrastText};
-	background-color: ${({ theme, disabled }) =>
-		`${theme.colors.primary}${disabled ? '80' : '40'}`};
-	padding: 10px 15px;
+
 	margin-bottom: 8px;
 	cursor: pointer;
-	border-radius: ${({ theme }) => theme.borderRadius};
 	transition: 0.3s;
 	display: block;
 
-	&:hover,
-	&:focus {
-		opacity: 0.5;
+	&:hover {
+		opacity: 0.75;
+	}
+
+	label {
+		padding: 10px 15px;
+		border-radius: ${({ theme }) => theme.borderRadius};
+		display: block;
+		opacity: ${({ disabled }) => (disabled ? '0.9' : '1')};
+		background-color: ${({ theme }) => `${theme.colors.primary}40}`};
+	}
+	input {
+		display: none;
+		&:checked + label {
+			background-color: ${({ theme, isCorrect, isAwnserChoice }) => {
+				if (isAwnserChoice) {
+					if (isCorrect) {
+						return `${theme.colors.success}`;
+					}
+					return `${theme.colors.wrong}`;
+				}
+				return `${theme.colors.primary}dd`;
+			}};
+		}
 	}
 `;
